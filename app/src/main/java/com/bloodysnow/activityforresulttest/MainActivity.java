@@ -42,8 +42,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickTwitter(View view) {
-        String url = "http://twitter.com/share?text=hogehoge";
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "test");
         startActivityForResult(intent, 0);
     }
 
