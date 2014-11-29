@@ -18,7 +18,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -42,10 +41,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickTwitter(View view) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "test");
-        startActivityForResult(intent, 0);
+       TwitterCaller twitterCaller = new TwitterCaller();
+        twitterCaller.tweet(this, "hogehoge", new TwitterCaller.Callback() {
+            @Override
+            public void onResult(int resultCode) {
+                int res = resultCode;
+                Log.i(getClass().getName(), "resultCode = " + res);
+            }
+        });
     }
 
     public void onClickFacebook(View view) {
